@@ -1,5 +1,11 @@
+import PortfolioRouter from "./router"
+
 function App() {
-	return <div className="App">portfolio</div>
+	return (
+		<>
+			<PortfolioRouter />
+		</>
+	)
 }
 
 export default App
