@@ -7,14 +7,19 @@ import Footer from "../components/Footer"
 
 import styled from "styled-components"
 import {flexCenter} from "../styles/theme"
+import ScrollSlideAnimation from "../components/ScrollSlideAnimation"
 
 const Home = () => {
 	return (
 		<Wrapper>
 			<Header />
 			<Aboutme />
-			<WhoamI />
-			<Stack />
+			<ScrollSlideAnimation>
+				<WhoamI />
+			</ScrollSlideAnimation>
+			<ScrollSlideAnimation>
+				<Stack />
+			</ScrollSlideAnimation>
 			<Project />
 			<Footer />
 		</Wrapper>
