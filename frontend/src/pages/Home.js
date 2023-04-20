@@ -7,19 +7,14 @@ import Footer from "../components/Footer"
 
 import styled from "styled-components"
 import {flexCenter} from "../styles/theme"
-import ScrollSlideAnimation from "../components/ScrollSlideAnimation"
 
 const Home = () => {
 	return (
 		<Wrapper>
 			<Header />
 			<Aboutme />
-			<ScrollSlideAnimation>
-				<WhoamI />
-			</ScrollSlideAnimation>
-			<ScrollSlideAnimation>
-				<Stack />
-			</ScrollSlideAnimation>
+			<WhoamI />
+			<Stack />
 			<Project />
 			<Footer />
 		</Wrapper>
@@ -33,7 +28,6 @@ const Wrapper = styled.main`
 	margin: auto;
 	flex-direction: column;
 	max-width: 80rem;
-	background-color: pink;
 	height: calc(100vh - 60px);
 	margin-top: 60px;
 `

@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import WhoamIBox from "./WhoamIBox"
+import ScrollSlideAnimation from "../ScrollSlideAnimation"
 
 import icon1 from "../../assets/images/icon-box-1.jpg"
 import icon2 from "../../assets/images/icon-box-2.jpg"
@@ -27,19 +28,22 @@ const WhoamI = () => {
 	return (
 		<Wrapper>
 			<h1 className="title">Who Am I</h1>
-			<section className="whoami-content">
-				<h2 className="subtitle-body-1">저는 이러이러한 개발자입니다</h2>
-				<h3 className="subtitle-body-2">부가설명:이러러이러한 사람입니다</h3>
-				<div className="box-wrapper">
-					{dummy.map((data) => (
-						<WhoamIBox
-							key={data.id}
-							text={data.value}
-							icon={data.icon}
-						/>
-					))}
-				</div>
-			</section>
+			<ScrollSlideAnimation>
+				<section className="whoami-content">
+					<h2 className="subtitle-body-1">저는 이러이러한 개발자입니다</h2>
+					<h3 className="subtitle-body-2">부가설명:이러러이러한 사람입니다</h3>
+
+					<div className="box-wrapper">
+						{dummy.map((data) => (
+							<WhoamIBox
+								key={data.id}
+								text={data.value}
+								icon={data.icon}
+							/>
+						))}
+					</div>
+				</section>
+			</ScrollSlideAnimation>
 		</Wrapper>
 	)
 }
