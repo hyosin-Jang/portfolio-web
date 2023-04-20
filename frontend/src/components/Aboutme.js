@@ -14,22 +14,24 @@ const Aboutme = () => {
 				<div className="aboutme-info">
 					<h2 className="name">Hyosin Jang</h2>
 					<table>
-						<tr>
-							<td>Email</td>
-							<td>cdnnl@gmail.com</td>
-						</tr>
-						<tr>
-							<td>Github</td>
-							<td>https://깃허브링크</td>
-						</tr>
-						<tr>
-							<td>Email</td>
-							<td>cdnnl@gmail.com</td>
-						</tr>
-						<tr>
-							<td>Email</td>
-							<td>cdnnl@gmail.com</td>
-						</tr>
+						<tbody>
+							<tr>
+								<td>Email</td>
+								<td>cdnnl@gmail.com</td>
+							</tr>
+							<tr>
+								<td>Github</td>
+								<td>https://깃허브링크</td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td>cdnnl@gmail.com</td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td>cdnnl@gmail.com</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</section>
