@@ -47,24 +47,40 @@ const WhoamI = () => {
 export default WhoamI
 
 const Wrapper = styled.section`
+	display: flex;
+	flex-direction: column;
+	min-height: 40rem;
 	background-color: skyblue;
 	padding: 2rem 0;
+
 	.title {
+		flex: 0.5;
 		padding: 0 10rem;
 		font-size: 3rem;
 	}
+
 	.whoami-content {
+		display: flex;
+		flex-direction: column;
+		margin: auto;
 		padding: 0 10rem;
+		flex: 2;
 		text-align: center;
+
 		.subtitle-body-1 {
+			font-size: 2rem;
+			font-weight: 800;
 		}
 
 		.subtitle-body-2 {
+			font-size: 1.5rem;
+			font-weight: 400;
 		}
 
 		.box-wrapper {
 			display: flex;
 			padding-top: 1rem;
+			font-size: 1.5rem;
 		}
 	}
 `

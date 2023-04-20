@@ -45,6 +45,7 @@ const Wrapper = styled.main`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	min-height: 50rem;
 	background-color: yellow;
 	padding: 3rem 0;
 
@@ -58,21 +59,22 @@ const Wrapper = styled.main`
 		margin: auto;
 		gap: 10rem;
 		.profile {
-			width: 20rem;
-			height: 20rem;
+			width: 25rem;
+			height: 25rem;
+			border-radius: 2rem;
 		}
 
 		.aboutme-info {
 			.name {
 				color: brown;
-				font-size: 2rem;
+				font-size: 3rem;
 			}
 			table {
 				border-collapse: separate;
 				border-spacing: 0 1.3rem;
 
 				tr > td {
-					font-size: 1.4rem;
+					font-size: 2rem;
 				}
 				tr > td:nth-child(1) {
 					font-weight: 800;

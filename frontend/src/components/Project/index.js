@@ -24,7 +24,7 @@ export default Project
 
 const Wrapper = styled.div`
 	display: flex;
-	padding: 2rem 10rem;
+	padding: 10rem 10rem;
 	flex-direction: column;
 	background-color: lightgreen;
 
@@ -36,7 +36,7 @@ const Wrapper = styled.div`
 	.box-wrapper {
 		display: flex;
 		flex-direction: column;
-		gap: 5rem;
+		gap: 7rem;
 	}
 `
 
