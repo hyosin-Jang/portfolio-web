@@ -10,7 +10,16 @@ const ProjectCard = ({id, projectName, stack, description, projectIcon}) => {
 			/>
 			<div className="project-data">
 				<div className="project-name">{projectName}</div>
-				<div className="project-stack">{stack && stack.map((stackName) => <span className="stack">{stackName}</span>)}</div>
+				<div className="project-stack">
+					{stack &&
+						stack.map((stackName, idx) => (
+							<span
+								key={idx}
+								className="stack">
+								{stackName}
+							</span>
+						))}
+				</div>
 				<div className="project-description">{description}</div>
 			</div>
 		</Wrapper>

@@ -1,7 +1,7 @@
 import Header from "../components/Header"
 import Aboutme from "../components/Aboutme"
 import WhoamI from "../components/WhoamI"
-import Timeline from "../components/Timeline"
+import Stack from "../components/Stack"
 import Project from "../components/Project"
 import Footer from "../components/Footer"
 
@@ -14,7 +14,7 @@ const Home = () => {
 			<Header />
 			<Aboutme />
 			<WhoamI />
-			<Timeline />
+			<Stack />
 			<Project />
 			<Footer />
 		</Wrapper>
