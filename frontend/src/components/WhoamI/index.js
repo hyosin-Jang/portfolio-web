@@ -53,8 +53,8 @@ export default WhoamI
 const Wrapper = styled.section`
 	display: flex;
 	flex-direction: column;
-	min-height: 40rem;
-	background-color: skyblue;
+	min-height: 50rem;
+
 	padding: 2rem 0;
 
 	.title {

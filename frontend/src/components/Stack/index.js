@@ -30,7 +30,8 @@ export default Stack
 const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	background-color: pink;
+	background-color: lightyellow;
+	min-height: 60rem;
 	.title {
 		padding: 0 10rem;
 		font-size: 3rem;

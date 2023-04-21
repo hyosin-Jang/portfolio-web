@@ -44,9 +44,11 @@ export default Aboutme
 const Wrapper = styled.main`
 	display: flex;
 	flex-direction: column;
+
+	min-height: 60rem;
+	position: relative;
 	width: 100%;
-	min-height: 50rem;
-	background-color: yellow;
+	background-color: lightyellow;
 	padding: 3rem 0;
 
 	.title {

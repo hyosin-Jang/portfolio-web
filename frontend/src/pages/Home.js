@@ -7,6 +7,8 @@ import Footer from "../components/Footer"
 
 import styled from "styled-components"
 import {flexCenter} from "../styles/theme"
+import {getProject} from "../api/projects"
+import {useState, useEffect} from "react"
 
 const Home = () => {
 	return (
@@ -27,7 +29,8 @@ const Wrapper = styled.main`
 	display: flex;
 	margin: auto;
 	flex-direction: column;
-	max-width: 80rem;
+	max-width: 100vw;
+	// margin: 0 10rem;
 	height: calc(100vh - 60px);
 	margin-top: 60px;
 `

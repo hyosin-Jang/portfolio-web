@@ -26,7 +26,6 @@ const Wrapper = styled.div`
 	display: flex;
 	padding: 10rem 10rem;
 	flex-direction: column;
-	background-color: lightgreen;
 
 	.title {
 		font-size: 3rem;
