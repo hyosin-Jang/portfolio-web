@@ -9,7 +9,10 @@ const cors = require("cors")
 dotenv.config()
 
 const indexRouter = require("./routes")
-const projectRouter = require("./routes/projects")
+const projectRouter = require("./routes/project")
+const commentRouter = require("./routes/comment")
+const likeRouter = require("./routes/like")
+const viewRouter = require("./routes/view")
 
 const app = express()
 app.set("port", process.env.PORT || 5000)
@@ -38,7 +41,10 @@ app.use(
 )
 
 app.use("/", indexRouter)
-app.use("/projects", projectRouter)
+app.use("/project", projectRouter)
+app.use("/comment", commentRouter)
+app.use("/view", viewRouter)
+app.use("/like", likeRouter)
 
 app.use((req, res, next) => {
 	res.status(404).send("Not Found")
