@@ -14,22 +14,24 @@ const Aboutme = () => {
 				<div className="aboutme-info">
 					<h2 className="name">Hyosin Jang</h2>
 					<table>
-						<tr>
-							<td>Email</td>
-							<td>cdnnl@gmail.com</td>
-						</tr>
-						<tr>
-							<td>Github</td>
-							<td>https://깃허브링크</td>
-						</tr>
-						<tr>
-							<td>Email</td>
-							<td>cdnnl@gmail.com</td>
-						</tr>
-						<tr>
-							<td>Email</td>
-							<td>cdnnl@gmail.com</td>
-						</tr>
+						<tbody>
+							<tr>
+								<td>Email</td>
+								<td>cdnnl@gmail.com</td>
+							</tr>
+							<tr>
+								<td>Github</td>
+								<td>https://깃허브링크</td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td>cdnnl@gmail.com</td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td>cdnnl@gmail.com</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</section>
@@ -42,8 +44,11 @@ export default Aboutme
 const Wrapper = styled.main`
 	display: flex;
 	flex-direction: column;
+
+	min-height: 60rem;
+	position: relative;
 	width: 100%;
-	background-color: yellow;
+	background-color: lightyellow;
 	padding: 3rem 0;
 
 	.title {
@@ -56,21 +61,22 @@ const Wrapper = styled.main`
 		margin: auto;
 		gap: 10rem;
 		.profile {
-			width: 20rem;
-			height: 20rem;
+			width: 25rem;
+			height: 25rem;
+			border-radius: 2rem;
 		}
 
 		.aboutme-info {
 			.name {
 				color: brown;
-				font-size: 2rem;
+				font-size: 3rem;
 			}
 			table {
 				border-collapse: separate;
 				border-spacing: 0 1.3rem;
 
 				tr > td {
-					font-size: 1.4rem;
+					font-size: 2rem;
 				}
 				tr > td:nth-child(1) {
 					font-weight: 800;

@@ -31,7 +31,7 @@ export default Footer
 const Wrapper = styled.section`
 	${flexCenter}
 	background-color: lightgrey;
-	padding: 5rem 0 2rem 0;
+	padding: 5rem 0 3rem 0;
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
