@@ -1,18 +1,30 @@
 import styled from "styled-components"
+import ScrollSlideAnimation from "../ScrollSlideAnimation"
 
 const ProjectCard = ({id, projectName, stack, description, projectIcon}) => {
 	return (
 		<Wrapper>
-			<img
-				className="app-icon"
-				src={projectIcon}
-				alt="app-icon"
-			/>
-			<div className="project-data">
-				<div className="project-name">{projectName}</div>
-				<div className="project-stack">{stack && stack.map((stackName) => <span className="stack">{stackName}</span>)}</div>
-				<div className="project-description">{description}</div>
-			</div>
+			<ScrollSlideAnimation>
+				<img
+					className="app-icon"
+					src={projectIcon}
+					alt="app-icon"
+				/>
+				<div className="project-data">
+					<div className="project-name">{projectName}</div>
+					<div className="project-stack">
+						{stack &&
+							stack.map((stackName, idx) => (
+								<span
+									key={idx}
+									className="stack">
+									{stackName}
+								</span>
+							))}
+					</div>
+					<div className="project-description">{description}</div>
+				</div>
+			</ScrollSlideAnimation>
 		</Wrapper>
 	)
 }
@@ -21,6 +33,7 @@ export default ProjectCard
 
 const Wrapper = styled.div`
 	display: flex;
+	min-height: 40rem;
 	.app-icon {
 		width: 10rem;
 		height: 10rem;

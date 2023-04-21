@@ -17,6 +17,7 @@ const Wrapper = styled.header`
 	background-color: orange;
 	width: 100%;
 	height: 60px;
+	z-index: 10;
 
 	display: flex;
 	align-items: center;
