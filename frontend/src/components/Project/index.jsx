@@ -1,8 +1,13 @@
+import {useState} from "react"
+
 import ProjectCard from "./ProjectCard"
 import ProjectIcon from "../../assets/images/icon-project-sample.png"
 import styled from "styled-components"
+import Modal from "../Modal"
 
 const Project = () => {
+	// {isOpen, onClose, children}
+
 	return (
 		<Wrapper>
 			<h1 className="title">Project</h1>
