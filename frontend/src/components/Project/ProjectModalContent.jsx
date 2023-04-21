@@ -55,6 +55,10 @@ const dummy = {
 	],
 }
 
+const handleSubmit = (e) => {
+	e.preventDefault()
+}
+
 const ProjectModalContent = () => {
 	const {projectName, duration, stack, view, like, comment} = dummy
 
@@ -79,19 +83,27 @@ const ProjectModalContent = () => {
 				<span>좋아요</span>
 				<span>{like}</span>
 			</div>
+			{/*TODO: 프로젝트 이미지 슬라이더 추가 */}
 			<div className="comment">
-				<span>댓글</span>
-				{comment &&
-					comment.map((c) => (
-						<div key={c.commentId}>
-							<span>이름</span>
-							<span>{c.name}</span>
-							<span>내용</span>
-							<span>{c.comment}</span>
-							<span>작성일</span>
-							<span>{c.created_at}</span>
-						</div>
-					))}
+				<form onSubmit={handleSubmit}>
+					<span>댓글</span>
+					{comment &&
+						comment.map((c) => (
+							<div key={c.commentId}>
+								<span>이름</span>
+								<span>{c.name}</span>
+								<span>내용</span>
+								<span>{c.comment}</span>
+								<span>작성일</span>
+								<span>{c.created_at}</span>
+							</div>
+						))}
+					<span>이름</span>
+					<input placeholder="이름을 입력해주세요" />
+					<span>댓글내용</span>
+					<input placeholder="댓글을 입력해주세요" />
+					<button type="submit">작성</button>
+				</form>
 			</div>
 		</Wrapper>
 	)
