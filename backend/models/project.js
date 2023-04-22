@@ -28,6 +28,9 @@ module.exports = class Project extends Sequelize.Model {
 				link: {
 					type: Sequelize.STRING(255),
 				},
+				view: {
+					type: Sequelize.INTEGER,
+				},
 				fk_project_thumb_url: {
 					type: Sequelize.STRING(255),
 				},
