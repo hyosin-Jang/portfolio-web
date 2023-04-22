@@ -1,4 +1,4 @@
-import {GET, POST} from "../utils/axios"
+import {GET, POST, DELETE} from "../utils/axios"
 
 // project
 export const getProjects = async () => {
@@ -10,12 +10,16 @@ export const getProjectDetail = async (projectId) => {
 }
 
 // comment
-//export const getComments = async (projectId) => {
-//	return await GET(`comment/${projectId}`)
-//}
+export const getComments = async (projectId) => {
+	return await GET(`comment/${projectId}`)
+}
 
 export const postComment = async (projectId, body) => {
 	return await POST(`comment/${projectId}`, body)
+}
+
+export const deleteComment = async (commentId, password) => {
+	return await DELETE(`comment/${commentId}/${password}`)
 }
 
 // view
