@@ -3,11 +3,10 @@ import Comment from "./Comment"
 import {getProjectDetail, postView, postLike} from "../../api/projects"
 import styled from "styled-components"
 
-const ProjectModalContent = () => {
+const ProjectModalContent = ({projectId}) => {
 	const [projectDetail, setProjectDetail] = useState()
 
 	const getProject = async () => {
-		let projectId = 2
 		try {
 			let data = await getProjectDetail(projectId)
 			if (data) {
@@ -26,30 +25,33 @@ const ProjectModalContent = () => {
 		<Wrapper>
 			{projectDetail && (
 				<>
-					<div className="project-name">{projectDetail.projectName}</div>
+					<div className="project-name">{projectDetail.project_name}</div>
 					<div className="duration">
 						<span>기간</span>
-						<span>duration</span>
+						<span>
+							{projectDetail.start_date} - {projectDetail.end_date}
+						</span>
 					</div>
 					<div className="stack">
 						<span>스택</span>
-						{projectDetail.stack.map((s) => (
-							<span key={s.stackId}>{s.stackName}</span>
-						))}
+						{projectDetail.Stacks.length > 0 && projectDetail.Stacks.map((s) => <span key={s.stack_id}>{s.stack_name}</span>)}
 					</div>
 					<div className="duration">
-						<span>기간</span>
-						<span>{projectDetail.duration}</span>
+						<span>링크</span>
+						<span>{projectDetail.link}</span>
 					</div>
 					<div className="duration">
 						<span>조회수</span>
 						<span>{projectDetail.view}</span>
 						<span>좋아요</span>
 						<button type="button">좋아요 버튼</button>
-						<span>{projectDetail.like}</span>
+						{/*<span>{projectDetail.Like}</span>*/}
 					</div>
 					{/*TODO: 프로젝트 이미지 슬라이더 추가 */}
-					<Comment comment={projectDetail.comment} />
+					<Comment
+						projectId={projectId}
+						comment={projectDetail.Comments}
+					/>
 				</>
 			)}
 		</Wrapper>
