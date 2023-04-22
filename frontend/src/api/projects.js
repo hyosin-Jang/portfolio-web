@@ -39,3 +39,12 @@ export const postLike = async (projectId) => {
 //export const getLike = async (projectId) => {
 //	return await GET(`like/${projectId}`)
 //}
+
+// photo
+export const getProjectImages = async () => {
+	return await GET(`project/photo`)
+}
+
+export const getProjectDetailImage = async (projectId) => {
+	return await GET(`project/${projectId}/photo`)
+}

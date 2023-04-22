@@ -3,10 +3,21 @@ import {useEffect, useState} from "react"
 import ProjectCard from "./ProjectCard"
 import ProjectIcon from "../../assets/images/icon-project-sample.png"
 import styled from "styled-components"
-import {getProjects} from "../../api/projects"
+import {getProjects, getProjectImages} from "../../api/projects"
 
 const Project = () => {
 	const [projects, setProjects] = useState()
+	const [projectImages, setProjectImages] = useState()
+
+	const getProjectImagesList = async () => {
+		try {
+			let data = await getProjectImages()
+			if (data) {
+				console.log("data", data)
+				setProjectImages(data)
+			}
+		} catch {}
+	}
 
 	const getProjectList = async () => {
 		try {
@@ -19,6 +30,7 @@ const Project = () => {
 	}
 	useEffect(() => {
 		getProjectList()
+		getProjectImagesList()
 	}, [])
 
 	return (
@@ -30,6 +42,7 @@ const Project = () => {
 						projects.map((data) => (
 							<ProjectCard
 								key={data.project_id}
+								image={projectImages[data.project_id]}
 								{...data}
 							/>
 						))}

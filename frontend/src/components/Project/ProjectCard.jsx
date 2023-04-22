@@ -4,8 +4,7 @@ import styled from "styled-components"
 import ScrollSlideAnimation from "../ScrollSlideAnimation"
 import Modal from "../Modal"
 import ProjectModalContent from "./ProjectModalContent"
-
-const ProjectCard = ({Stacks, description, start_date, end_date, link, project_id, project_name, view}) => {
+const ProjectCard = ({image, Stacks, description, start_date, end_date, link, project_id, project_name, view}) => {
 	const [isOpen, toggleOpen] = useState(false)
 	const onClose = () => toggleOpen((prev) => !prev)
 
@@ -21,7 +20,7 @@ const ProjectCard = ({Stacks, description, start_date, end_date, link, project_i
 				<img
 					onClick={onClose}
 					className="app-icon"
-					src="" // TODO: 아이콘으로 수정 {projectIcon}
+					src={image.data}
 					alt="app-icon"
 				/>
 
@@ -53,6 +52,7 @@ const Wrapper = styled.div`
 		width: 10rem;
 		height: 10rem;
 		border-radius: 1.2rem;
+		cursor: pointer;
 	}
 
 	.project-data {
