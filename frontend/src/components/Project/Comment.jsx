@@ -78,7 +78,7 @@ const Comment = ({projectId}) => {
 	}
 
 	return (
-		<Wrapper className="comment">
+		<Wrapper>
 			<Modal
 				onClose={handleModal}
 				isOpen={isOpen}>
@@ -95,51 +95,56 @@ const Comment = ({projectId}) => {
 			</Modal>
 
 			<form onSubmit={submitComment}>
-				<span>댓글</span>
-				{comments &&
-					comments.map((c) => (
-						<StyledComment key={c.comment_id}>
-							<div className="comment-row">
-								<span>{c.name}</span>
-								<span>{c.created_at}</span>
-							</div>
-							<div className="comment-row">
-								<span>{c.comment}</span>
-								<button
-									type="button"
-									id={c.comment_id}
-									onClick={handleModal}>
-									❎
-								</button>
-							</div>
-						</StyledComment>
-					))}
-				<div className="input-wrapper">
-					<div>
-						<span>이름</span>
-						<input
-							type="text"
-							placeholder="이름을 입력해주세요"
-							onChange={name.handleValue}
-							required
-						/>
-						<span>비밀번호</span>
-						<input
-							type="password"
-							placeholder="비밀번호를 입력해주세요"
-							onChange={password.handleValue}
-							required
-						/>
-					</div>
-					<div>
-						<span>댓글내용</span>
-						<input
-							type="text"
-							placeholder="댓글을 입력해주세요"
-							onChange={content.handleValue}
-							required
-						/>
-						<button type="submit">작성</button>
+				<div className="comment-title">댓글</div>
+				<div className="comment-info">
+					{comments &&
+						comments.map((c) => (
+							<StyledComment key={c.comment_id}>
+								<div className="comment-row">
+									<span className="comment-user">{c.name}</span>
+									<span className="comment-created-at">{c.created_at}</span>
+								</div>
+								{/*<hr style={{color: "red", height: "2px", borderStyle: "dotted"}} />*/}
+								<div className="comment-row">
+									<span className="comment-content">{c.comment}</span>
+									<button
+										type="button"
+										className="button-comment-delete"
+										id={c.comment_id}
+										onClick={handleModal}>
+										❎
+									</button>
+								</div>
+							</StyledComment>
+						))}
+					<div className="input-wrapper">
+						<div className="input-row">
+							<input
+								type="text"
+								placeholder="Name"
+								onChange={name.handleValue}
+								required
+							/>
+							<input
+								type="password"
+								placeholder="Password"
+								onChange={password.handleValue}
+								required
+							/>
+						</div>
+						<div className="input-row">
+							<textarea
+								type="text"
+								placeholder="여러분의 소중한 댓글을 입력해주세요"
+								onChange={content.handleValue}
+								required
+							/>
+							<button
+								className="button-submit"
+								type="submit">
+								작성
+							</button>
+						</div>
 					</div>
 				</div>
 			</form>
@@ -150,12 +155,49 @@ const Comment = ({projectId}) => {
 export default React.memo(Comment)
 
 const Wrapper = styled.div`
-	height: 30rem;
+	margin-top: 1.1rem;
 	.input-wrapper {
 		position: absolute;
-		bottom: 0;
+		bottom: 3rem;
+
+		.input-row {
+			display: flex;
+			gap: 1rem;
+			width: 100%;
+
+			& + .input-row {
+				margin-top: 0.8rem;
+			}
+			textarea {
+				width: 40rem;
+				height: 3rem;
+			}
+
+			.button-submit {
+				margin-left: 9rem;
+				background-color: green;
+				border-radius: 2rem;
+				color: white;
+				width: 5rem;
+				&:hover {
+					background-color: darkgreen;
+					transition: background-color 0.5s ease-out;
+				}
+			}
+		}
 	}
-	overflow-y: auto;
+
+	.comment-title {
+		margin-left: 0.8rem;
+		font-size: 1.5rem;
+		font-weight: 600;
+	}
+
+	.comment-info {
+		height: 17rem;
+		padding: 2rem;
+		overflow-y: auto;
+	}
 `
 
 const StyledComment = styled.div`
@@ -169,5 +211,12 @@ const StyledComment = styled.div`
 	.comment-row {
 		display: flex;
 		justify-content: space-between;
+
+		.comment-user {
+			font-size: 1.2rem;
+			font-weight: 600;
+		}
+		.comment-created-at {
+		}
 	}
 `
