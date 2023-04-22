@@ -17,10 +17,11 @@ const ProjectCard = ({id, projectName, stack, description, projectIcon}) => {
 					onClose={onClose}>
 					<ProjectModalContent />
 				</Modal>
+
 				<img
 					onClick={onClose}
 					className="app-icon"
-					src={projectIcon}
+					src="" // TODO: 아이콘으로 수정 {projectIcon}
 					alt="app-icon"
 				/>
 
@@ -28,11 +29,11 @@ const ProjectCard = ({id, projectName, stack, description, projectIcon}) => {
 					<div className="project-name">{projectName}</div>
 					<div className="project-stack">
 						{stack &&
-							stack.map((stackName, idx) => (
+							stack.map((s) => (
 								<span
-									key={idx}
+									key={s.stackId}
 									className="stack">
-									{stackName}
+									{s.stackName}
 								</span>
 							))}
 					</div>
