@@ -3,6 +3,7 @@ import axios from "axios"
 const fetchWrap = async ({method, url, body, params}) => {
 	const config = {
 		baseURL: process.env.REACT_APP_APIURL,
+		withCredentials: "true",
 		...params,
 	}
 
