@@ -18,7 +18,20 @@ const viewRouter = require("./routes/view")
 
 const app = express()
 app.set("port", process.env.PORT || 5000)
-app.use(cors({origin: "*"}))
+
+const corsOptions = {
+	credentials: true,
+	origin: "",
+}
+app.use(cors(corsOptions))
+
+app.use((req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "http://localhost:3000")
+	res.header("Access-Control-Allow-Credentials", true)
+	res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE")
+	res.header("Access-Control-Allow-Headers", "Content-Type")
+	next()
+})
 
 sequelize
 	.sync({force: false}) // true: 서버 실행 시 테이블 재생성
@@ -38,6 +51,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
+
 app.use(
 	session({
 		resave: false,
