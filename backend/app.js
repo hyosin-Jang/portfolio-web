@@ -8,6 +8,8 @@ const cors = require("cors")
 
 dotenv.config()
 
+const {sequelize} = require("./models")
+
 const indexRouter = require("./routes")
 const projectRouter = require("./routes/project")
 const commentRouter = require("./routes/comment")
@@ -17,6 +19,15 @@ const viewRouter = require("./routes/view")
 const app = express()
 app.set("port", process.env.PORT || 5000)
 app.use(cors({origin: "*"}))
+
+sequelize
+	.sync({force: false}) // true: 서버 실행 시 테이블 재생성
+	.then(() => {
+		console.log("데이터베이스 연결 성공")
+	})
+	.catch((err) => {
+		console.error(err)
+	})
 
 // 미들웨어 부착
 app.use(morgan("dev"))
