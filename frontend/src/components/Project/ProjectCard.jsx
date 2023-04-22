@@ -1,24 +1,39 @@
+import {useState} from "react"
+
 import styled from "styled-components"
 import ScrollSlideAnimation from "../ScrollSlideAnimation"
+import Modal from "../Modal"
+import ProjectModalContent from "./ProjectModalContent"
 
 const ProjectCard = ({id, projectName, stack, description, projectIcon}) => {
+	const [isOpen, toggleOpen] = useState(false)
+	const onClose = () => toggleOpen((prev) => !prev)
+
 	return (
 		<Wrapper>
 			<ScrollSlideAnimation>
+				<Modal
+					isOpen={isOpen}
+					onClose={onClose}>
+					<ProjectModalContent />
+				</Modal>
+
 				<img
+					onClick={onClose}
 					className="app-icon"
-					src={projectIcon}
+					src="" // TODO: 아이콘으로 수정 {projectIcon}
 					alt="app-icon"
 				/>
+
 				<div className="project-data">
 					<div className="project-name">{projectName}</div>
 					<div className="project-stack">
 						{stack &&
-							stack.map((stackName, idx) => (
+							stack.map((s) => (
 								<span
-									key={idx}
+									key={s.stackId}
 									className="stack">
-									{stackName}
+									{s.stackName}
 								</span>
 							))}
 					</div>

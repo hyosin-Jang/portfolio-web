@@ -1,19 +1,38 @@
+import {useEffect, useState} from "react"
+
 import ProjectCard from "./ProjectCard"
 import ProjectIcon from "../../assets/images/icon-project-sample.png"
 import styled from "styled-components"
+import {getProjects} from "../../api/projects"
 
 const Project = () => {
+	const [projects, setProjects] = useState()
+
+	const getProjectList = async () => {
+		try {
+			let data = await getProjects()
+			if (data) {
+				console.log("data", data)
+				setProjects(data)
+			}
+		} catch {}
+	}
+	useEffect(() => {
+		getProjectList()
+	}, [])
+
 	return (
 		<Wrapper>
 			<h1 className="title">Project</h1>
 			<section className="project-content">
 				<div className="box-wrapper">
-					{dummy.map((data) => (
-						<ProjectCard
-							key={data.id}
-							{...data}
-						/>
-					))}
+					{projects &&
+						projects.map((data) => (
+							<ProjectCard
+								key={data.projectId}
+								{...data}
+							/>
+						))}
 				</div>
 			</section>
 		</Wrapper>
