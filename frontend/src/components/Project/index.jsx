@@ -29,7 +29,7 @@ const Project = () => {
 					{projects &&
 						projects.map((data) => (
 							<ProjectCard
-								key={data.projectId}
+								key={data.project_id}
 								{...data}
 							/>
 						))}

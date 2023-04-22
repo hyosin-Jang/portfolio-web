@@ -7,7 +7,6 @@ import Footer from "../components/Footer"
 
 import styled from "styled-components"
 import {flexCenter} from "../styles/theme"
-import {getProject} from "../api/projects"
 import {useState, useEffect} from "react"
 
 const Home = () => {

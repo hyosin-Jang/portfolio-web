@@ -5,7 +5,7 @@ import ScrollSlideAnimation from "../ScrollSlideAnimation"
 import Modal from "../Modal"
 import ProjectModalContent from "./ProjectModalContent"
 
-const ProjectCard = ({id, projectName, stack, description, projectIcon}) => {
+const ProjectCard = ({Stacks, description, start_date, end_date, link, project_id, project_name, view}) => {
 	const [isOpen, toggleOpen] = useState(false)
 	const onClose = () => toggleOpen((prev) => !prev)
 
@@ -15,7 +15,7 @@ const ProjectCard = ({id, projectName, stack, description, projectIcon}) => {
 				<Modal
 					isOpen={isOpen}
 					onClose={onClose}>
-					<ProjectModalContent />
+					<ProjectModalContent projectId={project_id} />
 				</Modal>
 
 				<img
@@ -26,14 +26,14 @@ const ProjectCard = ({id, projectName, stack, description, projectIcon}) => {
 				/>
 
 				<div className="project-data">
-					<div className="project-name">{projectName}</div>
+					<div className="project-name">{project_name}</div>
 					<div className="project-stack">
-						{stack &&
-							stack.map((s) => (
+						{Stacks &&
+							Stacks.map((s) => (
 								<span
-									key={s.stackId}
+									key={s.stack_id}
 									className="stack">
-									{s.stackName}
+									{s.stack_name}
 								</span>
 							))}
 					</div>
