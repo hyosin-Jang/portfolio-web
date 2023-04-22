@@ -32,6 +32,26 @@ router.get("/", async (req, res) => {
 router.get("/:projectId", async (req, res) => {
 	const projectId = req.params.projectId
 
+	// 쿠키에 해당 프로젝트의 조회 여부 저장
+	const viewedProjects = req.signedCookies.viewedProjects || []
+	const isViewed = viewedProjects.includes(projectId)
+
+	if (!isViewed) {
+		try {
+			const viewUpdateProject = await Project.update(
+				{
+					view: db.sequelize.literal("view + 1"),
+				},
+				{
+					where: {project_id: projectId},
+				}
+			)
+			res.cookie("viewedProjects", [...viewedProjects, projectId], {maxAge: 86400, signed: true})
+		} catch (err) {
+			console.error(err)
+		}
+	}
+
 	try {
 		const project = await Project.findOne({
 			where: {

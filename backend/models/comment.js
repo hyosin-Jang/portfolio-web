@@ -16,6 +16,9 @@ module.exports = class Comment extends Sequelize.Model {
 				comment: {
 					type: Sequelize.TEXT,
 				},
+				password: {
+					type: Sequelize.STRING(32),
+				},
 				created_at: {
 					type: Sequelize.DATE,
 					defaultValue: Sequelize.NOW,

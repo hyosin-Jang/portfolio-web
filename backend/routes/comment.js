@@ -7,16 +7,15 @@ const router = express.Router()
 // POST /comment - 댓글 등록
 router.post("/:projectId", async (req, res) => {
 	const projectId = req.params.projectId
-	const {name, content} = req.body
+	const {name, content, password} = req.body
 
 	try {
 		const comment = await Comment.create({
 			fk_project_id: projectId,
 			name: name,
 			comment: content,
+			password: password,
 		})
-
-		console.log("방금 만든 코멘트", comment)
 		res.status(201).json(comment)
 	} catch (err) {
 		console.error(err)
@@ -34,9 +33,38 @@ router.get("/:projectId", async (req, res) => {
 				fk_project_id: projectId,
 			},
 		})
-
-		console.log("프로젝트 id로 comments 조회", comments)
 		res.status(201).json(comments)
+	} catch (err) {
+		console.error(err)
+		next(err)
+	}
+})
+
+// DELETE /comment/:commentId - 댓글 삭제
+router.delete("/:commentId/:password", async (req, res) => {
+	const {commentId, password} = req.params
+
+	try {
+		const comments = await Comment.destroy({
+			where: {
+				comment_id: commentId,
+				password: password,
+			},
+		})
+
+		if (!comments) {
+			let result = {
+				status: 202,
+				deleteRows: comments,
+			}
+			res.status(202).json(result)
+		} else {
+			let result = {
+				status: 200,
+				deleteRows: comments,
+			}
+			res.status(201).json(result)
+		}
 	} catch (err) {
 		console.error(err)
 		next(err)
