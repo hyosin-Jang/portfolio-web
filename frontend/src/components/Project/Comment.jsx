@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect, useState, useRef} from "react"
 import Modal from "../Modal"
 import {postComment, getComments, deleteComment} from "../../api/projects"
 import {useInput} from "../../hooks/useInput"
@@ -10,6 +10,7 @@ const Comment = ({projectId}) => {
 	const [comments, setComments] = useState()
 	const [isOpen, toggleModalOpen] = useState(false)
 	const [deleteCommentId, setDeleteCommentId] = useState()
+	const scrollRef = useRef(null)
 
 	const handleModal = (e) => {
 		e.preventDefault()
@@ -22,6 +23,16 @@ const Comment = ({projectId}) => {
 	const content = useInput("")
 
 	const passwordConfirm = useInput("")
+
+	const scrollToBottom = () => {
+		if (scrollRef.current) {
+			scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+		}
+	}
+
+	useEffect(() => {
+		scrollToBottom()
+	}, [comments])
 
 	const handleDeleteComment = async (e) => {
 		e.preventDefault()
@@ -101,7 +112,9 @@ const Comment = ({projectId}) => {
 
 			<form onSubmit={submitComment}>
 				<div className="comment-title">댓글</div>
-				<div className="comment-info">
+				<div
+					className="comment-info"
+					ref={scrollRef}>
 					{comments &&
 						comments.map((c) => (
 							<StyledComment key={c.comment_id}>
