@@ -72,6 +72,13 @@ router.get("/:projectId/photo", (req, res) => {
 	})
 })
 
+router.get("/stack", async (req, res) => {
+	try {
+		const stacks = await Stack.findAll({})
+		res.send(stacks)
+	} catch {}
+})
+
 // GET /project
 // 프로젝트들을 가지고 오면서 스택 테이블 함께 조회
 router.get("/", async (req, res) => {

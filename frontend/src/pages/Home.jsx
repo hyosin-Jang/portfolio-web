@@ -5,17 +5,34 @@ import Stack from "../components/Stack"
 import Project from "../components/Project"
 import Footer from "../components/Footer"
 
+import {getStacks} from "../api/projects"
+
 import styled from "styled-components"
 import {flexCenter} from "../styles/theme"
 import {useState, useEffect} from "react"
 
 const Home = () => {
+	const [stacks, setStacks] = useState()
+
+	const getStack = async () => {
+		try {
+			let data = await getStacks()
+			if (data) {
+				//console.log("stacks", data)
+				setStacks(data)
+			}
+		} catch {}
+	}
+	useEffect(() => {
+		getStack()
+	}, [])
+
 	return (
 		<Wrapper>
 			<Header />
 			<Aboutme />
 			<WhoamI />
-			<Stack />
+			{stacks && <Stack stacks={stacks} />}
 			<Project />
 			<Footer />
 		</Wrapper>

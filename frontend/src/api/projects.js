@@ -9,6 +9,11 @@ export const getProjectDetail = async (projectId) => {
 	return await GET(`project/${projectId}`)
 }
 
+// stacks
+export const getStacks = async () => {
+	return await GET(`project/stack`)
+}
+
 // comment
 export const getComments = async (projectId) => {
 	return await GET(`comment/${projectId}`)
