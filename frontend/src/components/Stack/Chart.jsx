@@ -13,6 +13,7 @@ const Chart = ({data}) => {
 							display: true,
 							position: "right",
 						},
+						color: "white",
 					}}
 					data={data}
 					height={120}
@@ -27,6 +28,7 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 
+	color: white;
 	width: 50rem;
 	height: 50rem;
 `
