@@ -32,6 +32,7 @@ body {
    }
  }
  
+ 
  code {
    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
      monospace;
@@ -45,5 +46,22 @@ button{
    &:focus{
       outline: none;
    }
+}
+
+a{
+   color: white;
+   text-decoration: none;
+   &:focus{
+      color: white;
+   }
+   &:active{
+      color: white;
+   }
+
+   &:hover{
+      color: ${theme.colors.mint};
+      transition: color 0.3s ease-out;
+   }
+
 }
 `

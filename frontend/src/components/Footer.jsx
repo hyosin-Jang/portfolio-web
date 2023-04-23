@@ -7,18 +7,28 @@ const Footer = () => {
 		<Wrapper>
 			<div className="icon-sns">
 				<span>
-					<img
-						src={githubIcon}
-						alt="icon-github"
+					<a
 						className="icon"
-					/>
+						href="https://github.com/hyosin-Jang"
+						target="_blank">
+						<img
+							src={githubIcon}
+							alt="icon-github"
+							className="icon"
+						/>
+					</a>
 				</span>
 				<span>
-					<img
-						src={instagramIcon}
-						alt="icon-github"
+					<a
 						className="icon"
-					/>
+						href="https://www.instagram.com/cdnnnnl/"
+						target="_blank">
+						<img
+							src={instagramIcon}
+							alt="icon-github"
+							className="icon"
+						/>
+					</a>
 				</span>
 			</div>
 			<div className="copyright">Copyright @2023. Hyosin All rights reserved</div>
@@ -30,7 +40,8 @@ export default Footer
 
 const Wrapper = styled.section`
 	${flexCenter}
-	background-color: lightgrey;
+	background-color: black;
+	color: white;
 	padding: 5rem 0 3rem 0;
 	display: flex;
 	flex-direction: column;
@@ -39,9 +50,9 @@ const Wrapper = styled.section`
 	.icon-sns {
 		display: flex;
 		gap: 3rem;
-		span > img {
-			width: 5rem;
-			height: 5rem;
+		.icon {
+			width: 3rem;
+			height: 3rem;
 		}
 	}
 `
