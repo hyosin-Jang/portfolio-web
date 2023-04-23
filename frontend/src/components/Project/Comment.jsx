@@ -4,6 +4,7 @@ import {postComment, getComments, deleteComment} from "../../api/projects"
 import {useInput} from "../../hooks/useInput"
 
 import styled from "styled-components"
+import {flexCenter} from "../../styles/theme"
 
 const Comment = ({projectId}) => {
 	const [comments, setComments] = useState()
@@ -82,16 +83,20 @@ const Comment = ({projectId}) => {
 			<Modal
 				onClose={handleModal}
 				isOpen={isOpen}>
-				<form onSubmit={handleDeleteComment}>
-					삭제하려면 비밀번호를 입력해주세요
+				<RemoveModalForm onSubmit={handleDeleteComment}>
+					<div className="modal-title">삭제하려면 비밀번호를 입력해주세요</div>
+
 					<input
 						type="password"
+						placeholder="password"
 						onChange={passwordConfirm.handleValue}
 						required
 					/>
-					<button type="submit">삭제</button>
-					<button onClick={handleModal}>취소</button>
-				</form>
+					<div className="modal-control">
+						<button type="submit">삭제</button>
+						<button onClick={handleModal}>취소</button>
+					</div>
+				</RemoveModalForm>
 			</Modal>
 
 			<form onSubmit={submitComment}>
@@ -153,6 +158,29 @@ const Comment = ({projectId}) => {
 }
 
 export default React.memo(Comment)
+
+const RemoveModalForm = styled.form`
+	${flexCenter}
+	flex-direction: column;
+	margin: 2rem 0;
+	height: 100%;
+	padding: 0 2rem;
+	margin: auto;
+	gap: 2rem;
+
+	.modal-title {
+		font-size: 2rem;
+	}
+
+	input {
+		width: 15rem;
+		height: 2rem;
+		border-radius: 1rem;
+	}
+	.modal-control {
+		font-size: 1.5rem;
+	}
+`
 
 const Wrapper = styled.div`
 	margin-top: 1.1rem;
