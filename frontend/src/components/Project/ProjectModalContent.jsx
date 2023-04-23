@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react"
+import React, {useEffect, useState} from "react"
 import Comment from "./Comment"
 import {getProjectDetail, getProjectDetailImage, postView, postLike} from "../../api/projects"
 import styled from "styled-components"
 import Slider from "./Slider"
+
 const ProjectModalContent = ({projectId}) => {
 	const [projectDetail, setProjectDetail] = useState()
 	const [projectDetailImages, setProjectDetailImages] = useState()
@@ -80,7 +81,7 @@ const ProjectModalContent = ({projectId}) => {
 	)
 }
 
-export default ProjectModalContent
+export default React.memo(ProjectModalContent)
 
 const Wrapper = styled.div`
 	padding: 2rem;
