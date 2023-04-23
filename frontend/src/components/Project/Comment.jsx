@@ -2,9 +2,9 @@ import React, {useEffect, useState, useRef} from "react"
 import Modal from "../Modal"
 import {postComment, getComments, deleteComment} from "../../api/projects"
 import {useInput} from "../../hooks/useInput"
-
+import deleteIcon from "../../assets/images/icon-delete.png"
 import styled from "styled-components"
-import {flexCenter} from "../../styles/theme"
+import {theme, submitButton, flexCenter, formInput} from "../../styles/theme"
 
 const Comment = ({projectId}) => {
 	const [comments, setComments] = useState()
@@ -89,6 +89,16 @@ const Comment = ({projectId}) => {
 		e.target.reset()
 	}
 
+	const getPaseDate = (timestamp) => {
+		const now = new Date(timestamp)
+		const month = now.getMonth() + 1 // getMonth()는 0부터 시작하므로 1을 더해줍니다.
+		const date = now.getDate()
+		const hours = now.getHours().toString().padStart(2, "0")
+		const minutes = now.getMinutes().toString().padStart(2, "0")
+
+		return `${month}월 ${date}일 ${hours}:${minutes}`
+	}
+
 	return (
 		<Wrapper>
 			<Modal
@@ -97,15 +107,23 @@ const Comment = ({projectId}) => {
 				<RemoveModalForm onSubmit={handleDeleteComment}>
 					<div className="modal-title">삭제하려면 비밀번호를 입력해주세요</div>
 
-					<input
+					<Input
 						type="password"
 						placeholder="password"
 						onChange={passwordConfirm.handleValue}
 						required
 					/>
 					<div className="modal-control">
-						<button type="submit">삭제</button>
-						<button onClick={handleModal}>취소</button>
+						<button
+							type="submit"
+							className="button-submit">
+							삭제
+						</button>
+						<button
+							className="button-submit button-white"
+							onClick={handleModal}>
+							취소
+						</button>
 					</div>
 				</RemoveModalForm>
 			</Modal>
@@ -118,41 +136,56 @@ const Comment = ({projectId}) => {
 					{comments &&
 						comments.map((c) => (
 							<StyledComment key={c.comment_id}>
-								<div className="comment-row">
-									<span className="comment-user">{c.name}</span>
-									<span className="comment-created-at">{c.created_at}</span>
+								<div className="first-column">
+									<div className="comment-row">
+										<span className="comment-user">{c.name}</span>
+										{/*<span className="comment-created-at">{c.created_at}</span>*/}
+									</div>
+									<div className="comment-row">
+										<span className="comment-content">{c.comment}</span>
+									</div>
 								</div>
-								{/*<hr style={{color: "red", height: "2px", borderStyle: "dotted"}} />*/}
-								<div className="comment-row">
-									<span className="comment-content">{c.comment}</span>
+								<div className="second-column">
+									<div className="comment-created-at">{getPaseDate(c.created_at)}</div>
 									<button
 										type="button"
 										className="button-comment-delete"
 										id={c.comment_id}
 										onClick={handleModal}>
-										❎
+										<img
+											className="icon-delete"
+											src={deleteIcon}
+											alt="icon-delete"
+										/>
 									</button>
 								</div>
 							</StyledComment>
 						))}
 					<div className="input-wrapper">
 						<div className="input-row">
-							<input
+							<Input
+								className="input-small"
+								maxLength="10"
 								type="text"
 								placeholder="Name"
 								onChange={name.handleValue}
 								required
 							/>
-							<input
+
+							<Input
+								className="input-small"
 								type="password"
 								placeholder="Password"
+								maxLength="20"
 								onChange={password.handleValue}
 								required
 							/>
 						</div>
 						<div className="input-row">
-							<textarea
+							<Input
+								className="input-big"
 								type="text"
+								maxLength="200"
 								placeholder="여러분의 소중한 댓글을 입력해주세요"
 								onChange={content.handleValue}
 								required
@@ -172,26 +205,52 @@ const Comment = ({projectId}) => {
 
 export default React.memo(Comment)
 
+const Input = styled.input`
+	${formInput}
+
+	&.input-small {
+		max-width: 15rem;
+	}
+
+	&.input-big {
+		width: 34rem;
+	}
+`
+
 const RemoveModalForm = styled.form`
 	${flexCenter}
 	flex-direction: column;
-	margin: 2rem 0;
 	height: 100%;
 	padding: 0 2rem;
-	margin: auto;
 	gap: 2rem;
 
 	.modal-title {
 		font-size: 2rem;
+		font-weight: 700;
+		margin-bottom: 4rem;
 	}
 
 	input {
-		width: 15rem;
+		width: 22rem;
 		height: 2rem;
 		border-radius: 1rem;
+		margin-bottom: 2rem;
 	}
 	.modal-control {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		width: 20rem;
 		font-size: 1.5rem;
+		.button-submit {
+			${submitButton}
+
+			&.button-white {
+				background-color: white;
+				color: ${theme.colors.lightBlack};
+				border: 1px solid ${theme.colors.borderGrey};
+			}
+		}
 	}
 `
 
@@ -209,27 +268,24 @@ const Wrapper = styled.div`
 			& + .input-row {
 				margin-top: 0.8rem;
 			}
+
 			textarea {
 				width: 40rem;
 				height: 3rem;
 			}
 
 			.button-submit {
+				${submitButton}
 				margin-left: 9rem;
-				background-color: green;
-				border-radius: 2rem;
+
 				color: white;
 				width: 5rem;
-				&:hover {
-					background-color: darkgreen;
-					transition: background-color 0.5s ease-out;
-				}
 			}
 		}
 	}
 
 	.comment-title {
-		margin-left: 0.8rem;
+		text-align: center;
 		font-size: 1.5rem;
 		font-weight: 600;
 	}
@@ -241,9 +297,43 @@ const Wrapper = styled.div`
 	}
 `
 
-const StyledComment = styled.div`
+const StyledComment = styled.section`
 	display: flex;
-	flex-direction: column;
+	// flex-direction: column;
+
+	.first-column {
+		flex: 4;
+	}
+	.second-column {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		flex: 1;
+
+		.comment-created-at {
+			color: ${theme.colors.lightBlack};
+		}
+
+		.button-comment-delete {
+			.icon-delete {
+				width: 1rem;
+				height: 1rem;
+				border-radius: 1.6rem;
+
+				&:hover {
+					background-color: lightgrey;
+					border-radius: 1.6rem;
+					transition: background-color 0.5s ease-in-out;
+				}
+			}
+		}
+	}
+
+	box-shadow: rgba(255, 255, 255, 0.12) 0px 0px 2px 0px inset, rgba(0, 0, 0, 0.05) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 6px;
+	padding: 10px 13px;
+	overflow: hidden;
+	background-color: rgb(255, 255, 255);
+	border-radius: 18px;
 
 	& + & {
 		margin-top: 1.1rem;
@@ -251,13 +341,16 @@ const StyledComment = styled.div`
 
 	.comment-row {
 		display: flex;
-		justify-content: space-between;
+		gap: 5px;
 
 		.comment-user {
 			font-size: 1.2rem;
 			font-weight: 600;
+			margin-bottom: 3px;
 		}
-		.comment-created-at {
+
+		.comment-content {
+			white-space: no-wrap;
 		}
 	}
 `
