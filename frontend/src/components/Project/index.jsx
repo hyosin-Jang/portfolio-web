@@ -4,16 +4,21 @@ import ProjectCard from "./ProjectCard"
 import ProjectIcon from "../../assets/images/icon-project-sample.png"
 import styled from "styled-components"
 import {getProjects, getProjectImages} from "../../api/projects"
+import {useSetRecoilState} from "recoil"
+import {projectStacks} from "../../utils/atom"
 
 const Project = () => {
 	const [projects, setProjects] = useState()
 	const [projectImages, setProjectImages] = useState()
 
+	const setProjectStacks = useSetRecoilState(projectStacks)
 	const getProjectImagesList = async () => {
 		try {
 			let data = await getProjectImages()
 			if (data) {
 				console.log("data", data)
+
+				// const projectStack = data.map((project) => project.Stacks)
 				setProjectImages(data)
 			}
 		} catch {}
@@ -25,6 +30,7 @@ const Project = () => {
 			if (data) {
 				console.log("data", data)
 				setProjects(data)
+				setProjectStacks(data)
 			}
 		} catch {}
 	}
