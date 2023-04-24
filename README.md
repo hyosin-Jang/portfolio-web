@@ -25,9 +25,9 @@ https://user-images.githubusercontent.com/71035113/233878961-ab1f18ff-32b4-456e-
 
 ## 🔍 Feature
 
-1. Click on the project icon to see more detailed information by the modal
-2. Commenting and deleting function: username, password and content required
-3. View count: Use cookies to prevent duplicate counting
+1. `Modal`: detailed information modal with image slider
+2. `Commenting and deleting function`: username, password and contents are required
+3. `View count`: use cookies to prevent duplicate counting
 
 ## 🏃‍♀️How to run?
 
@@ -35,9 +35,20 @@ https://user-images.githubusercontent.com/71035113/233878961-ab1f18ff-32b4-456e-
 
 Run code on localhost.
 
--   database
+- database
 
--   backend
+```
+Import data to MySQL workbench
+
+1. Open MySQL workbench
+2. Click [Server]-[Data Import] tab
+3. Upload the `.sql` files
+
+```
+
+you can check more detailed information in [this post](https://velog.io/@finelinefe/TIP-MySQL-Workbench%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-DB-Dump)
+
+- backend
 
 ```
 $ git clone https://github.com/hyosin-Jang/portfolio-web
