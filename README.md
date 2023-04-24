@@ -1,34 +1,84 @@
-## 포트폴리오 웹
+# ✨ Portfolio-web
 
-### FE
+## Project Demo
 
--   ✅ 1. 레이아웃 마크업: 4/19(수)
--   ✅ 2. 기능 개발 (chart.js): 4/20(목)
--   ✅ 3. api 연결: 4/21(금), 4/22(토) --> 최소구현기능
--   [] 4. 전역상태관리: 4/23(일)
--   [] 5. 스타일링: 4/23(일)
--   ✅ 6. 애니메이션: 4/22(토)
--   [] 7. 리팩토링: 4/23(일)
+Demo video
 
-### BE
+## ⚙Used Technology
 
--   ✅ 1. DB ERD 설계: 4/20(목)
--   ✅ 2. api 명세서 작성: 4/20(목)
--   ✅ 3. 기본 환경 세팅: 4/20(목)
--   ✅ 4-1. 개발 1/2: 4/21(금)
--   [] 4-2. 개발 2/2: 4/22(토) --> 최소구현기능
--   [] 5. 리팩토링: 4/23(일)
+<p > <b>- Front-end</b> </p>
+<div >
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
+<img src="https://img.shields.io/badge/Recoil-764ABC?style=flat-square&logo=Recoil&logoColor=white"/>
+<img src="https://img.shields.io/badge/Chart.js-F9A03C?style=flat-square&logo=Chart.js&logoColor=white"/>
+</div>
 
-### 기타
+<p > <b>- Back-end</b> </p>
+<div >
+<img src="https://img.shields.io/badge/Node.js-6DB33F?style=flat-square&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white" />
+<img src="https://img.shields.io/badge/Sequelize-4479A1?style=flat-square&logo=Sequelize&logoColor=white" />
+<img src="https://img.shields.io/badge/Express-4479A1?style=flat-square&logo=Express&logoColor=white" />
+</div>
 
-기능별 커밋 + 커밋 내용 상세하게 기술
+## 🔍 Feature
 
-참고) 커밋메시지
+1. Click on the project icon to see more detailed information by the modal
+2. Commenting and deleting function: username, password and content required
+3. View count: Use cookies to prevent duplicate counting
 
--   FEAT : 새로운 기능의 추가
--   FIX: 버그 수정
--   DOCS: 문서 수정
--   STYLE: 스타일 관련 기능
--   REFACTOR: 코드 리펙토링
--   TEST: 테스트 코트, 리펙토링 테스트 코드 추가
--   CHORE: 빌드 업무 수정, 패키지 매니저 수정, 자잘한 변경
+## 🏃‍♀️How to run?
+
+### ✨Web application
+
+Run code on localhost.
+
+-   database
+
+-   backend
+
+```
+$ git clone https://github.com/hyosin-Jang/portfolio-web
+
+$ cd backend
+
+$ npm install
+
+$ npm start
+
+```
+
+-   frontend
+
+```
+$ git clone https://github.com/hyosin-Jang/portfolio-web
+
+$ cd frontend
+
+$ npm install
+
+$ npm start
+
+```
+
+you can also use `yarn install` and `yarn start` if npm does not work well.
+
+### Directory
+
+```
+├─ backend: API server
+│   ├─ assets: Projects detail images
+│   ├─ configs: DB connection settings
+│   ├─ models: Sequelize orm models
+│   └─ routes: Api routes
+└─ frontend/src: React
+   ├─ api: Api functions
+   ├─ assets: Static files (ex. icon, font)
+   ├─ components
+   ├─ hooks: Custom hooks
+   ├─ pages
+   ├─ router
+   ├─ styles: Global styles and themes
+   └─ utils: Common functions used by multiple files
+```
