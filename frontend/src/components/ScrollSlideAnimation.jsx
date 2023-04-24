@@ -12,7 +12,6 @@ const ScrollSlideAnimation = ({children, direction = "top"}) => {
 		setIsInViewPort(checkIsInViewport(elemRef?.current))
 	}, [elemRef?.current === undefined])
 
-	// 스크롤이 될 때마다 element가 뷰포트 영역 안인지 체크
 	useWindowScroll(() => {
 		setIsInViewPort(checkIsInViewport(elemRef?.current))
 	})
@@ -46,9 +45,6 @@ const Wrapper = styled.div`
 		const animationRule = css`
 			${keyframe} 2s ease
 		`
-
-		// isInViewPort가 true라면
-		// 방향에 따라 translate(이동) 애니메이션을 실행한다.
 		return css`
 			${!isInViewPort && defaultStyle}
 			animation: ${isInViewPort && animationRule};

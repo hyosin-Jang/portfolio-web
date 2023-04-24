@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react"
 import Comment from "./Comment"
-import {getProjectDetail, getProjectDetailImage, postView, postLike} from "../../api/projects"
-import styled from "styled-components"
-import {theme} from "../../styles/theme"
 import Slider from "./Slider"
+import {getProjectDetail, getProjectDetailImage} from "../../api/projects"
+import styled from "styled-components"
+import {theme, flexCenter} from "../../styles/theme"
 
 const ProjectModalContent = ({projectId}) => {
 	const [projectDetail, setProjectDetail] = useState()
@@ -13,7 +13,6 @@ const ProjectModalContent = ({projectId}) => {
 		try {
 			let data = await getProjectDetailImage(projectId)
 			if (data) {
-				console.log("detail images data", data)
 				setProjectDetailImages(data)
 			}
 		} catch {}
@@ -23,7 +22,6 @@ const ProjectModalContent = ({projectId}) => {
 		try {
 			let data = await getProjectDetail(projectId)
 			if (data) {
-				console.log("detail data", data)
 				setProjectDetail(data)
 			}
 		} catch {}
@@ -32,8 +30,6 @@ const ProjectModalContent = ({projectId}) => {
 		getProject()
 		getProjectImage()
 	}, [])
-
-	//const {projectName, duration, stack, view, like, comment} = projectDetail
 
 	return (
 		<Wrapper>
@@ -124,14 +120,14 @@ const Wrapper = styled.div`
 `
 
 const Box = styled.div`
+	display: flex;
+	flex: 1;
+	flex-direction: column;
 	background-color: ${theme.colors.lightGrey};
 	padding: 1rem;
 	border-radius: 1.6rem;
 	max-width: 10rem;
 	margin: 0.5rem;
-	display: flex;
-	flex: 1;
-	flex-direction: column;
 	line-height: 1.5;
 	margin-top: 1rem;
 
@@ -144,7 +140,10 @@ const Box = styled.div`
 		font-size: 1.2rem;
 		font-weight: 700;
 	}
+
 	.box-content {
+		${flexCenter}
+		display: inline-block;
 		height: 100%;
 		max-width: 30rem;
 		text-align: center;
@@ -153,16 +152,11 @@ const Box = styled.div`
 		margin-top: 0.1rem;
 		border-radius: 2rem;
 
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		display: inline-block;
-
 		.stack {
+			display: inline-block;
 			margin-right: 0.2rem;
 			border-radius: 1.25rem;
 			padding: 0 0.2rem;
-			display: inline-block;
 		}
 
 		.wrap {
@@ -172,11 +166,9 @@ const Box = styled.div`
 
 		.link {
 			color: ${theme.colors.drakGrey};
-
 			&:active {
 				color: white;
 			}
-
 			&:hover {
 				color: ${theme.colors.lightPurple};
 				transition: color 0.3s ease-out;
@@ -185,8 +177,8 @@ const Box = styled.div`
 	}
 
 	.link {
-		max-width: 5rem;
 		display: inline-block;
+		max-width: 5rem;
 	}
 
 	.wrap {

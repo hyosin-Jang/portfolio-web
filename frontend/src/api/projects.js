@@ -31,19 +31,6 @@ export const deleteComment = async (commentId, password) => {
 export const postView = async (projectId) => {
 	return await POST(`view/${projectId}`)
 }
-//export const getViewCount = async (projectId) => {
-//	return await GET(`view/${projectId}`)
-//}
-
-// like
-
-export const postLike = async (projectId) => {
-	return await POST(`like/${projectId}`)
-}
-
-//export const getLike = async (projectId) => {
-//	return await GET(`like/${projectId}`)
-//}
 
 // photo
 export const getProjectImages = async () => {

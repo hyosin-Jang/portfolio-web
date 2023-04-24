@@ -18,7 +18,7 @@ const Modal = ({isOpen, onClose, children}) => {
 
 	return ReactDOM.createPortal(
 		<>
-			<Overlay onClick={onClose}></Overlay> {/** 바탕 누르면 꺼짐 */}
+			<Overlay onClick={onClose}></Overlay>
 			<ModalContent className="modal">{children}</ModalContent>
 		</>,
 		modalNode
@@ -27,7 +27,6 @@ const Modal = ({isOpen, onClose, children}) => {
 
 export default Modal
 
-// 모달창 배경
 const Overlay = styled.div`
 	position: fixed;
 	top: 0;
@@ -40,7 +39,6 @@ const Overlay = styled.div`
 	transition: opacity 2s ease-in-out 0.2s, background-color 2s ease-in-out 0.2s;
 `
 
-// 모달창 내용
 const ModalContent = styled.div`
 	z-index: 30;
 	background-color: white;

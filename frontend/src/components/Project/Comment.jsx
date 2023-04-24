@@ -1,28 +1,34 @@
 import React, {useEffect, useState, useRef} from "react"
+
+// components & hooks
 import Modal from "../Modal"
-import {postComment, getComments, deleteComment} from "../../api/projects"
 import {useInput} from "../../hooks/useInput"
-import deleteIcon from "../../assets/images/icon-delete.png"
+import {getParsedDate} from "../../utils/getParsedDate"
+
+// api
+import {postComment, getComments, deleteComment} from "../../api/projects"
+
+// style
 import styled from "styled-components"
 import {theme, submitButton, flexCenter, formInput} from "../../styles/theme"
+import deleteIcon from "../../assets/images/icon-delete.png"
 
 const Comment = ({projectId}) => {
 	const [comments, setComments] = useState()
 	const [isOpen, toggleModalOpen] = useState(false)
 	const [deleteCommentId, setDeleteCommentId] = useState()
+
 	const scrollRef = useRef(null)
+	const name = useInput("")
+	const password = useInput("")
+	const content = useInput("")
+	const passwordConfirm = useInput("")
 
 	const handleModal = (e) => {
 		e.preventDefault()
 		setDeleteCommentId(e.target.id)
 		toggleModalOpen((prev) => !prev)
 	}
-
-	const name = useInput("")
-	const password = useInput("")
-	const content = useInput("")
-
-	const passwordConfirm = useInput("")
 
 	const scrollToBottom = () => {
 		if (scrollRef.current) {
@@ -70,7 +76,7 @@ const Comment = ({projectId}) => {
 		e.preventDefault()
 
 		if (!name.value.trim() || !content.value.trim() || !password.value.trim()) {
-			alert("공백 제거하고 입력해주세요")
+			alert("공백을 제거하고 입력해주세요")
 			e.target.reset()
 			return
 		}
@@ -80,6 +86,7 @@ const Comment = ({projectId}) => {
 			content: content.value,
 			password: password.value,
 		}
+
 		try {
 			let data = await postComment(projectId, body)
 			if (data) {
@@ -87,16 +94,6 @@ const Comment = ({projectId}) => {
 			}
 		} catch {}
 		e.target.reset()
-	}
-
-	const getPaseDate = (timestamp) => {
-		const now = new Date(timestamp)
-		const month = now.getMonth() + 1 // getMonth()는 0부터 시작하므로 1을 더해줍니다.
-		const date = now.getDate()
-		const hours = now.getHours().toString().padStart(2, "0")
-		const minutes = now.getMinutes().toString().padStart(2, "0")
-
-		return `${month}월 ${date}일 ${hours}:${minutes}`
 	}
 
 	return (
@@ -139,14 +136,13 @@ const Comment = ({projectId}) => {
 								<div className="first-column">
 									<div className="comment-row">
 										<span className="comment-user">{c.name}</span>
-										{/*<span className="comment-created-at">{c.created_at}</span>*/}
 									</div>
 									<div className="comment-row">
 										<span className="comment-content">{c.comment}</span>
 									</div>
 								</div>
 								<div className="second-column">
-									<div className="comment-created-at">{getPaseDate(c.created_at)}</div>
+									<div className="comment-created-at">{getParsedDate(c.created_at)}</div>
 									<button
 										type="button"
 										className="button-comment-delete"
@@ -171,7 +167,6 @@ const Comment = ({projectId}) => {
 								onChange={name.handleValue}
 								required
 							/>
-
 							<Input
 								className="input-small"
 								type="password"
@@ -236,6 +231,7 @@ const RemoveModalForm = styled.form`
 		border-radius: 1rem;
 		margin-bottom: 2rem;
 	}
+
 	.modal-control {
 		display: flex;
 		flex-direction: column;
@@ -269,15 +265,9 @@ const Wrapper = styled.div`
 				margin-top: 0.8rem;
 			}
 
-			textarea {
-				width: 40rem;
-				height: 3rem;
-			}
-
 			.button-submit {
 				${submitButton}
 				margin-left: 9rem;
-
 				color: white;
 				width: 5rem;
 			}
@@ -299,8 +289,6 @@ const Wrapper = styled.div`
 
 const StyledComment = styled.section`
 	display: flex;
-	// flex-direction: column;
-
 	.first-column {
 		flex: 4;
 	}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useState} from "react"
 
 import styled from "styled-components"
 
@@ -13,7 +13,6 @@ const Slider = ({images}) => {
 		setCurSlideIdx((prev) => (prev === 0 ? images.length - 1 : prev - 1))
 	}
 
-	console.log("curSlideIdx", curSlideIdx)
 	return (
 		<Wrapper>
 			<div
@@ -52,8 +51,8 @@ const Slider = ({images}) => {
 export default React.memo(Slider)
 
 const Img = styled.img`
-	width: 200px;
-	height: 20rem;
+	width: 100%;
+	//height: 20rem;
 	border-radius: 2rem;
 	display: inline-block;
 `
@@ -70,6 +69,7 @@ const Wrapper = styled.div`
 
 		.slide {
 			flex: 0 0 100%;
+			margin: auto;
 		}
 
 		.slide img {
@@ -95,19 +95,5 @@ const Wrapper = styled.div`
 
 	.next {
 		right: 10px;
-	}
-`
-
-const StyledComment = styled.div`
-	display: flex;
-	flex-direction: column;
-
-	& + & {
-		margin-top: 1.1rem;
-	}
-
-	.comment-row {
-		display: flex;
-		justify-content: space-between;
 	}
 `

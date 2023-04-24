@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react"
 
 import ProjectCard from "./ProjectCard"
-import ProjectIcon from "../../assets/images/icon-project-sample.png"
-import styled from "styled-components"
+
 import {getProjects, getProjectImages} from "../../api/projects"
 import {useSetRecoilState} from "recoil"
 import {projectStacks} from "../../utils/atom"
+
+import styled from "styled-components"
 
 const Project = () => {
 	const [projects, setProjects] = useState()
@@ -16,9 +17,6 @@ const Project = () => {
 		try {
 			let data = await getProjectImages()
 			if (data) {
-				console.log("data", data)
-
-				// const projectStack = data.map((project) => project.Stacks)
 				setProjectImages(data)
 			}
 		} catch {}
@@ -28,7 +26,6 @@ const Project = () => {
 		try {
 			let data = await getProjects()
 			if (data) {
-				console.log("data", data)
 				setProjects(data)
 				setProjectStacks(data)
 			}
@@ -48,7 +45,7 @@ const Project = () => {
 						projects.map((data) => (
 							<ProjectCard
 								key={data.project_id}
-								image={projectImages[data.project_id]}
+								image={projectImages[data.project_id - 1]}
 								{...data}
 							/>
 						))}
@@ -76,41 +73,3 @@ const Wrapper = styled.div`
 		gap: 7rem;
 	}
 `
-
-const dummy = [
-	{
-		id: 1,
-		projectName: "Babyak",
-		stack: ["Javascript", "Node.js", "MySQL"],
-		description: "교내 웹 프로젝트로 어떠어떠하게 해서 이러이러한 결과를 얻었습니다.(OKR)",
-		projectIcon: ProjectIcon,
-	},
-	{
-		id: 2,
-		projectName: "Babyak",
-		stack: ["Javascript", "Node.js", "MySQL"],
-		description: "교내 웹 프로젝트로 어떠어떠하게 해서 이러이러한 결과를 얻었습니다.(OKR)",
-		projectIcon: ProjectIcon,
-	},
-	{
-		id: 3,
-		projectName: "Babyak",
-		stack: ["Javascript", "Node.js", "MySQL"],
-		description: "교내 웹 프로젝트로 어떠어떠하게 해서 이러이러한 결과를 얻었습니다.(OKR)",
-		projectIcon: ProjectIcon,
-	},
-	{
-		id: 4,
-		projectName: "Babyak",
-		stack: ["Javascript", "Node.js", "MySQL"],
-		description: "교내 웹 프로젝트로 어떠어떠하게 해서 이러이러한 결과를 얻었습니다.(OKR)",
-		projectIcon: ProjectIcon,
-	},
-	{
-		id: 5,
-		projectName: "Babyak",
-		stack: ["Javascript", "Node.js", "MySQL"],
-		description: "교내 웹 프로젝트로 어떠어떠하게 해서 이러이러한 결과를 얻었습니다.(OKR)",
-		projectIcon: ProjectIcon,
-	},
-]
