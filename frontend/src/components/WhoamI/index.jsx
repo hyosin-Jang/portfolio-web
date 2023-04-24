@@ -6,20 +6,20 @@ import icon1 from "../../assets/images/icon-box-1.jpg"
 import icon2 from "../../assets/images/icon-box-2.jpg"
 import icon3 from "../../assets/images/icon-box-3.jpg"
 
-const dummy = [
+const WhoAmIData = [
 	{
 		id: 1,
-		value: "javascript 기반으로 프론트엔드 블라블라블라",
+		value: "팀원들과 각자의 상황을 이해하고 존중하며 긴밀하게 소통합니다.",
 		icon: icon1,
 	},
 	{
 		id: 2,
-		value: "컴퓨터 공학 기초 지식, 기본기 블라블라",
+		value: "새로운 것에 도전하는 것을 좋아하고 빠르게 성장하기 위해 배우려는 자세를 가지고 있습니다.",
 		icon: icon2,
 	},
 	{
 		id: 3,
-		value: "컴퓨터 공학 기초 지식, 기본기 블라블라",
+		value: "효율적인 코드에 대해 고민하며, 클린 코드를 작성하려고 노력합니다.",
 		icon: icon3,
 	},
 ]
@@ -30,11 +30,9 @@ const WhoamI = () => {
 			<h1 className="title">Who Am I</h1>
 			<ScrollSlideAnimation>
 				<section className="whoami-content">
-					<h2 className="subtitle-body-1">저는 이러이러한 개발자입니다</h2>
-					<h3 className="subtitle-body-2">부가설명:이러러이러한 사람입니다</h3>
-
+					<h2 className="subtitle-body-1">안녕하세요! 성장하는 과정을 즐기는 개발자 장효신입니다.</h2>
 					<div className="box-wrapper">
-						{dummy.map((data) => (
+						{WhoAmIData.map((data) => (
 							<WhoamIBox
 								key={data.id}
 								text={data.value}
