@@ -48,6 +48,12 @@ button{
    }
 }
 
+input{
+   &:focus{
+      outline: none;
+   }
+}
+
 a{
    color: white;
    text-decoration: none;
