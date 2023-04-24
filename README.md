@@ -42,7 +42,7 @@ Import data to MySQL workbench
 
 1. Open MySQL workbench
 2. Click [Server]-[Data Import] tab
-3. Upload the `.sql` files
+3. Upload the .sql files
 
 ```
 
@@ -83,9 +83,9 @@ you can also use `yarn install` and `yarn start` if npm does not work well.
 │   ├─ assets: Projects detail images
 │   ├─ configs: DB connection settings
 │   ├─ models: Sequelize orm models
-│   └─ routes: Api routes
+│   └─ routes: API routes
 └─ frontend/src: React
-   ├─ api: Api functions
+   ├─ api: API functions
    ├─ assets: Static files (ex. icon, font)
    ├─ components
    ├─ hooks: Custom hooks
