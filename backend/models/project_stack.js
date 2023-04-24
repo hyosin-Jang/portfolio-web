@@ -28,7 +28,6 @@ module.exports = class ProjectStack extends Sequelize.Model {
 		)
 	}
 	static associate(db) {
-		// project와 stack을 하나씩 가져와서 연결
 		db.ProjectStack.belongsTo(db.Project, {foreignKey: "project_id"})
 		db.ProjectStack.belongsTo(db.Stack, {foreignKey: "stack_id"})
 	}

@@ -1,10 +1,9 @@
-const dummy = require("./dummy")
 const Comment = require("../models/comment")
 
 const express = require("express")
 const router = express.Router()
 
-// POST /comment - 댓글 등록
+// POST /comment
 router.post("/:projectId", async (req, res) => {
 	const projectId = req.params.projectId
 	const {name, content, password} = req.body
@@ -23,7 +22,7 @@ router.post("/:projectId", async (req, res) => {
 	}
 })
 
-// GET /comment - 댓글 정보만 조회할 때 사용
+// GET /comment/:projectId
 router.get("/:projectId", async (req, res) => {
 	const projectId = req.params.projectId
 
@@ -40,7 +39,7 @@ router.get("/:projectId", async (req, res) => {
 	}
 })
 
-// DELETE /comment/:commentId - 댓글 삭제
+// DELETE /comment/:commentId/:password
 router.delete("/:commentId/:password", async (req, res) => {
 	const {commentId, password} = req.params
 

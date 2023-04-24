@@ -2,9 +2,6 @@ const db = require("../models")
 const Project = require("../models/project")
 const Stack = require("../models/stack")
 const Comment = require("../models/comment")
-const Like = require("../models/like")
-const View = require("../models/view")
-const Photo = require("../models/photo")
 
 const express = require("express")
 const router = express.Router()
@@ -44,7 +41,7 @@ router.get("/photo", (req, res) => {
 
 router.get("/:projectId/photo", (req, res) => {
 	const projectId = req.params.projectId
-	baseDirectory = `../assets/project${projectId.toString().padStart(3, "0")}` // 04
+	baseDirectory = `../assets/project${projectId.toString().padStart(3, "0")}`
 	const filePath = path.join(__dirname, baseDirectory)
 	const absolutePath = path.resolve(filePath)
 
@@ -80,7 +77,6 @@ router.get("/stack", async (req, res) => {
 })
 
 // GET /project
-// 프로젝트들을 가지고 오면서 스택 테이블 함께 조회
 router.get("/", async (req, res) => {
 	try {
 		const projects = await Project.findAll({
@@ -98,7 +94,6 @@ router.get("/", async (req, res) => {
 })
 
 // GET /project/:projectId
-// 해당 프로젝트 아이디를 가지고, 좋아요, 조회수, 댓글, 스택 (+사진) 함께 조회
 router.get("/:projectId", async (req, res) => {
 	const projectId = req.params.projectId
 
@@ -134,12 +129,6 @@ router.get("/:projectId", async (req, res) => {
 				{
 					model: Stack,
 					through: {attributes: []},
-				},
-				{
-					model: Like,
-				},
-				{
-					model: View,
 				},
 			],
 		})
